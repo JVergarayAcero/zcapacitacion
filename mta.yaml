@@ -1,0 +1,92 @@
+_schema-version: "3.2"
+ID: zmatricular
+version: 0.0.1
+modules:
+- name: zmatricular-destination-content
+  type: com.sap.application.content
+  requires:
+  - name: zmatricular-destination-service
+    parameters:
+      content-target: true
+  - name: zmatricular_html_repo_host
+    parameters:
+      service-key:
+        name: zmatricular_html_repo_host-key
+  - name: uaa_zmatricular
+    parameters:
+      service-key:
+        name: uaa_zmatricular-key
+  parameters:
+    content:
+      instance:
+        destinations:
+        - Name: zmatricular_zmatricular_html_repo_host
+          ServiceInstanceName: zmatricular-html5-app-host-service
+          ServiceKeyName: zmatricular_html_repo_host-key
+          sap.cloud.service: zmatricular
+        - Authentication: OAuth2UserTokenExchange
+          Name: zmatricular_uaa_zmatricular
+          ServiceInstanceName: zmatricular-xsuaa-service
+          ServiceKeyName: uaa_zmatricular-key
+          sap.cloud.service: zmatricular
+        existing_destinations_policy: ignore
+  build-parameters:
+    no-source: true
+- name: zmatricular-app-content
+  type: com.sap.application.content
+  path: .
+  requires:
+  - name: zmatricular_html_repo_host
+    parameters:
+      content-target: true
+  build-parameters:
+    build-result: resources
+    requires:
+    - artifacts:
+      - nebulacomzmatricularacurso.zip
+      name: nebulacomzmatricularacurso
+      target-path: resources/
+- name: nebulacomzmatricularacurso
+  type: html5
+  path: zmatricularacurso
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+resources:
+- name: zmatricular-destination-service
+  type: org.cloudfoundry.managed-service
+  parameters:
+    config:
+      HTML5Runtime_enabled: true
+      init_data:
+        instance:
+          destinations:
+          - Authentication: NoAuthentication
+            Name: ui5
+            ProxyType: Internet
+            Type: HTTP
+            URL: https://ui5.sap.com
+          existing_destinations_policy: update
+      version: 1.0.0
+    service: destination
+    service-name: zmatricular-destination-service
+    service-plan: lite
+- name: zmatricular_html_repo_host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: zmatricular-html5-app-host-service
+    service-plan: app-host
+- name: uaa_zmatricular
+  type: org.cloudfoundry.managed-service
+  parameters:
+    path: ./xs-security.json
+    service: xsuaa
+    service-name: zmatricular-xsuaa-service
+    service-plan: application
+parameters:
+  deploy_mode: html5-repo

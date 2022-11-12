@@ -1,0 +1,141 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+    <VBox class="sapUiSmallMargin">
+		<f:Form id="FormChange480_Trial" editable="true">
+			<f:title>
+				<core:Title text="Matricular a Curso" />
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="3"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Datos del Alumno">
+					<f:formElements>
+						<f:FormElement label="{i18n>nameTuition}">
+							<f:fields>
+								<Input id="iptnameAlumn" placeholder="{i18n>holdNameAlumn}" showSuggestion="true" showValueHelp="true" 
+                                valueHelpRequest=".onValueHelpRequest"
+			                    
+                                value="{modelAlumn>/name}" type="Text"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lastNameTuition}">
+							<f:fields>
+								<Input  value="{modelAlumn>/lastName}" type="Text"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>docCompetitor}">
+							<f:fields>
+								<Input value="{modelAlumn>/documentNumber}" type="Text"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>sexCompetitor}">
+							<f:fields>
+								<Input value="{modelAlumn>/sex}" type="Text"/>
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>lblProfesion}">
+							<f:fields>
+								<Select id="cbxProfesion" selectedKey="{modelAlumn>/id}" items="{displayProf>/masterProfesion}">
+									<items>
+                                        <core:Item key="{displayProf>ID}" text="{displayProf>description}"/>
+									</items>
+								</Select>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lblAge}">
+							<f:fields>
+								<Input value="{modelAlumn>/Edad}" type="Number"/>
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+        <f:Form id="FormChange480_12120-2"
+			editable="true">
+			<f:title>
+				<core:Title text="More" />
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="12"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="2"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="{i18n>lblTitulo}">
+					<f:formElements>
+					<f:FormElement label="{i18n>title_Horarios}">
+							<f:fields>
+								<Input value="{modelAlumn>/horarioCurso}" id="iptHoraCurso" showValueHelp="true" valueHelpRequest="onPopupHorario"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>courseName}">
+							<f:fields>
+								<Input value="{modelAlumn>/nombreCurso}" id="iptNameCurso"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>courseLevel}">
+							<f:fields>
+								<Input value="{modelAlumn>/nivelCurso}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>hourInicio}">
+							<f:fields>
+								<Input value="{modelAlumn>/horaInicio}" />
+							</f:fields>
+                            
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer >
+					<f:formElements>
+					<f:FormElement label="{i18n>courseFrequence}">
+							<f:fields>
+								<Input value="{modelAlumn>/frecuencia}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>dateInicio}">
+							<f:fields>
+								<Input value="{modelAlumn>/dateInicio}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>totalHoras}">
+							<f:fields>
+								<Input value="{modelAlumn>/totalHoras}" />
+							</f:fields>
+						</f:FormElement>
+                          
+					</f:formElements>
+				</f:FormContainer>                
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>    

@@ -1,0 +1,183 @@
+{
+    "_version": "1.42.0",
+    "sap.app": {
+        "id": "nebula.com.zmatricularacurso",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.7.6",
+            "toolsId": "a8789c96-f69a-40e2-bf12-51f2db27d1ac"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.102.1",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {},
+                "sap.ui.layout": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "nebula.com.zmatricularacurso.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "nebula.com.zmatricularacurso.view",
+                "clearTaget": false,
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false,
+                "bypassed": {
+					"target": [
+						"not found"
+					]
+				}
+            },
+            "routes": [
+                {
+                    "name": "VistaCursos",
+                    "view": "VistaCursos",
+                    "pattern": "VistaCursos",
+                    "target": [
+                        "TargetVistaCursos"
+                    ]
+                },
+                {
+                    "name": "VistaCursoDetalle",
+                    "view": "VistaCursoDetalle",
+                    "pattern": "VistaCursoDetalle/:idCurso:",
+                    "target": [
+                        "TargetVistaCursoDetalle"
+                    ]
+                },
+                {
+                    "name": "VistaCursoMatricula",
+                    "view": "VistaCursoMatricula",
+                    "pattern": "",
+                    "target": [
+                        "TargetVistaCursoMatricula"
+                    ]
+                },
+                {
+                    "name": "VistaNuevoParticipante",
+                    "view": "VistaNuevoParticipante",
+                    "pattern": "VistaNuevoParticipante/:idCalendar:",
+                    "target": [
+                        "TargetVistaNuevoParticipante"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetVistaCursos": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "VistaCursos",
+                    "viewLevel":3,
+                    "viewName": "VistaCursos"
+                },
+                "TargetVistaCursoDetalle": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "VistaCursoDetalle",
+                    "viewLevel":4,
+                    "viewName": "VistaCursoDetalle"
+                },
+                "TargetVistaCursoMatricula": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "VistaCursoMatricula",
+                    "viewLevel":1,
+                    "viewName": "VistaCursoMatricula"
+                },
+                "TargetVistaNuevoParticipante": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "VistaNuevoParticipante",
+                    "viewLevel":2,
+                    "viewName": "VistaNuevoParticipante"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "nebula.com.zmatricularacurso.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "zmatricular"
+    }
+}

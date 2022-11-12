@@ -1,0 +1,275 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" 
+controllerName="nebula.com.zmatricularacurso.controller.VistaCursoDetalle" 
+xmlns:uxap="sap.uxap" 
+xmlns="sap.m" 
+xmlns:core="sap.ui.core" 
+xmlns:layout="sap.ui.layout"
+xmlns:form="sap.ui.layout.form" 
+xmlns:chart="sap.chart" 
+xmlns:data="sap.chart.data">
+    <uxap:ObjectPageLayout showTitleInHeaderContent="false" showHeaderContent="true" showEditHeaderButton="false" showFooter="false" class="sapUiSizeCompact">
+        <uxap:headerTitle>
+            <uxap:ObjectPageHeader objectTitle="{Name}" objectSubtitle="{ID}" isObjectIconAlwaysVisible="false" isObjectTitleAlwaysVisible="true" isObjectSubtitleAlwaysVisible="true" showPlaceholder="true" objectImageURI="{ProductImage}">
+                <uxap:navigationBar>
+                    <Bar>
+                        <contentLeft>
+                            <Button type="Back" press="onBack"/>
+                        </contentLeft>
+                        <contentMiddle>
+                            <Title text="Detalle del Curso"/>
+                        </contentMiddle>
+                        <contentRight/>
+                    </Bar>
+                </uxap:navigationBar>
+                <uxap:actions>
+                    <Button text="Matricularme al Curso" iconFirst="false" type="Emphasized" enabled="true" press="onMatricular">
+                        <layoutData>
+                            <OverflowToolbarLayoutData closeOverflowOnInteraction="true"/>
+                        </layoutData>
+                    </Button>
+                    <!--<Button text="Delete" iconFirst="false" type="Transparent" enabled="true" press="_onFioriObjectPageActionButtonPress1">
+                        <layoutData>
+                            <OverflowToolbarLayoutData />
+                        </layoutData>
+                    </Button>
+                    <Button text="Copy" iconFirst="false" type="Transparent" enabled="true" press="_onFioriObjectPageActionButtonPress2">
+                        <layoutData>
+                            <OverflowToolbarLayoutData />
+                        </layoutData>
+                    </Button>
+                    <Button text="" icon="sap-icon://action" iconFirst="true" type="Transparent" enabled="true" press="_onFioriObjectPageActionButtonPress3">
+                        <layoutData>
+                            <OverflowToolbarLayoutData />
+                        </layoutData>
+                    </Button>-->
+                </uxap:actions>
+                <!--<uxap:breadCrumbsLinks/>-->
+            </uxap:ObjectPageHeader>
+        </uxap:headerTitle>
+        <uxap:headerContent>
+            <VBox>
+                <items>
+                    <Image src="{ProductImage}" class="sapUxAPObjectPageHeaderObjectImage sapSmartTemplatesObjectPageHeaderImage" width="6rem" height="6rem" visible="{path:'ProductImage', formatter:'.formatImageVisibilityFromImageSource'}"/>
+                    <core:Icon src="{ProductImage}" class="sapUxAPObjectPageHeaderObjectImage sapSmartTemplatesObjectPageHeaderImage" size="6rem" width="6rem" height="6rem" visible="{path:'ProductImage', formatter:'.formatIconVisibilityFromImageSource'}"/>
+                </items>
+            </VBox>
+            <VBox>
+                <items>
+                    <HBox>
+                        <items>
+                            <Label text="Nivel:" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{CoursesView>/descriptionLevel}"/>
+                        </items>
+                    </HBox>
+                    <HBox>
+                        <items>
+                            <Label text="Total de Horas:" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{CoursesView>/totalHours}"/>
+                        </items>
+                    </HBox>
+                     <HBox>
+                        <items>
+                            <Label text="Costo:" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{CoursesView>/cost}"/>
+                        </items>
+                    </HBox>
+
+                    <!--<HBox>
+                        <items>
+                            <Label text="Supplier"/>
+                            <Label text=":" class="sapUiTinyMarginEnd"/>
+                            <ObjectStatus text="{Supplier/Name}"/>
+                        </items>
+                    </HBox>-->
+                </items>
+            </VBox>
+            
+            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                <items>
+                    <Title text="Nombre de Curso" titleStyle="H4" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+                    <Text text="{CoursesView>/name}" width="245.640625px" maxLines="4" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                </items>
+                <layoutData/>
+            </VBox>
+            <VBox>
+                <items>
+                    <Title text="Descripcion" titleStyle="H4" width="auto" textAlign="Begin" visible="true" />
+                    <Text text="{CoursesView>/description}" width="245.640625px" maxLines="4" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                    <!--<Title text="Availability"/>
+                    <ObjectNumber number="{path:'StockLevel', formatter:'.formatFractionDigitFromValue'}" unit="" state="{path:'StockLevelCC', formatter:'.formatStateFromCriticality'}"/>-->
+
+                </items>
+            </VBox>
+            <!--<VBox>
+                <items>
+                    <Title text="Costo de Curso"/>
+                    <ObjectNumber number="{path:'CoursesView>/cost', formatter:'.formatFractionDigitFromValue'}" unit="{Currency}" state="None"/>
+                </items>
+            </VBox>-->
+        </uxap:headerContent>
+        <uxap:sections>
+            <!--<uxap:ObjectPageSection title="Technical Data">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Technical Data">
+                        <uxap:blocks>
+                            <layout:Grid defaultSpan="XL12 L12 M12 S12">
+                                <layout:content>
+                                    <form:Form>
+                                        <form:layout>
+                                            <form:ResponsiveGridLayout labelSpanXL="12" labelSpanL="12" labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="4" columnsL="3" columnsM="2" singleContainerFullSize="false"/>
+                                        </form:layout>
+                                        <form:formContainers>
+                                            <form:FormContainer title="">
+                                                <form:formElements>
+                                                    <form:FormElement>
+                                                        <form:label>
+                                                            <Label text="Product Height" required="false"/>
+                                                        </form:label>
+                                                        <form:fields>
+                                                            <ObjectNumber number="{path:'Height', formatter:'.formatFractionDigitFromValue'}" unit="{HeightUnit}" emphasized="false"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement>
+                                                        <form:label>
+                                                            <Label text="Product Width" required="false"/>
+                                                        </form:label>
+                                                        <form:fields>
+                                                            <ObjectNumber number="{path:'Width', formatter:'.formatFractionDigitFromValue'}" unit="{WidthUnit}" emphasized="false"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement>
+                                                        <form:label>
+                                                            <Label text="Product Depth" required="false"/>
+                                                        </form:label>
+                                                        <form:fields>
+                                                            <ObjectNumber number="{path:'Length', formatter:'.formatFractionDigitFromValue'}" unit="{LengthUnit}" emphasized="false"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                    <form:FormElement>
+                                                        <form:label>
+                                                            <Label text="Weight" required="false"/>
+                                                        </form:label>
+                                                        <form:fields>
+                                                            <ObjectNumber number="{path:'Weight', formatter:'.formatFractionDigitFromValue'}" unit="{WeightUnit}" emphasized="false"/>
+                                                        </form:fields>
+                                                    </form:FormElement>
+                                                </form:formElements>
+                                            </form:FormContainer>
+                                        </form:formContainers>
+                                    </form:Form>
+                                </layout:content>
+                            </layout:Grid>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>-->
+            <uxap:ObjectPageSection title="Detalle de Horarios Disponibles">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Detalle de Horarios Disponibles">
+                        <uxap:blocks>
+                            <Table id="id_tb_horario" width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" itemPress="onMatricular" items="{/lista}">
+                                <headerToolbar>
+                                    <OverflowToolbar design="Transparent">
+                                        <content>
+                                            <ToolbarSpacer/>
+                                            <Button icon="sap-icon://action-settings" type="Transparent">
+                                                <layoutData>
+                                                    <OverflowToolbarLayoutData />
+                                                </layoutData>
+                                            </Button>
+                                        </content>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <columns>
+                                    <Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false" demandPopin="true" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Modalidad"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false" demandPopin="true" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Frecuencia" width="auto"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false" demandPopin="true" minScreenWidth="Phone">
+                                        <header>
+                                            <Text text="Fecha de Inicio"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false" demandPopin="true" minScreenWidth="Desktop">
+                                        <header>
+                                            <Text text="Hora de Inicio"/>
+                                        </header>
+                                    </Column>
+                                    <Column width="auto" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false" demandPopin="true" minScreenWidth="Desktop">
+                                        <header>
+                                            <Text text="Hora Fin"/>
+                                        </header>
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem type="Navigation">
+                                        <cells>
+                                            <!--<RatingIndicator value="{path: 'Rating', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" maxValue="5" visualMode="Half" enabled="false" visible="true" editable="true"/>
+                                            <ObjectStatus text="{Reviewer}"/>-->
+                                            <Text text="{masterModality_ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            <Text text="{masterFrequence_ID}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+
+                                            <Text text="{startDate}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            <Text text="{startHour}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            <Text text="{endHour}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                            <!--<Text text="{ReviewText}" width="auto" maxLines="7" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>-->
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>
+            <!--<uxap:ObjectPageSection title="Sales Data">
+                <uxap:subSections>
+                    <uxap:ObjectPageSubSection title="Sales Data">
+                        <uxap:blocks>
+                            <VBox alignItems="Stretch" direction="Column" fitContainer="false" width="auto" height="auto" justifyContent="Start" renderType="Div" visible="true" displayInline="false">
+                                <items>
+                                    <OverflowToolbar width="100%" design="Transparent" visible="true" enabled="true">
+                                        <content>
+                                            <Title text="Year / Month" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+                                            <ToolbarSpacer width=""/>
+                                            <OverflowToolbarButton text="DrillDown" type="Transparent" icon="sap-icon://drill-down" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress"/>
+                                            <OverflowToolbarButton text="Legend" type="Transparent" icon="sap-icon://legend" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress1"/>
+                                            <OverflowToolbarButton text="ZoomIn" type="Transparent" icon="sap-icon://zoom-in" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress2"/>
+                                            <OverflowToolbarButton text="ZoomOut" type="Transparent" icon="sap-icon://zoom-out" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress3"/>
+                                            <OverflowToolbarButton text="FullScreen" type="Transparent" icon="sap-icon://full-screen" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress4"/>
+                                            <OverflowToolbarButton text="Vertical" type="Emphasized" icon="sap-icon://vertical-bar-chart" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false" press="_onOverflowToolbarButtonPress5"/>
+                                        </content>
+                                    </OverflowToolbar>
+                                    <chart:Chart id="Fiori_ObjectPage_ObjectPage_0-sections-Fiori_ObjectPage_Section-1489998041435-sectionContent-sap_m_VBox-1489998099163-items-sap_chart_ColumnChart-1490000879535" width="100%" height="450px" visibleDimensions="Year,__metadata/uri" visibleMeasures="Revenue" vizProperties="{staticDataModel>/Fiori_ObjectPage_ObjectPage_0-sections-Fiori_ObjectPage_Section-1489998041435-sectionContent-sap_m_VBox-1489998099163-items-sap_chart_ColumnChart-1490000879535/vizProperties}" chartType="column" selectionMode="Single" uiConfig="{}">
+                                        <chart:dimensions>
+                                            <data:Dimension name="Year" label="Year" role="category"/>
+                                            <data:Dimension name="__metadata/uri" label="Month" role="category" textProperty="Month"/>
+                                        </chart:dimensions>
+                                        <chart:measures>
+                                            <data:Measure name="Revenue" label="Revenue" role="axis2"/>
+                                        </chart:measures>
+                                    </chart:Chart>
+                                </items>
+                                <layoutData/>
+                            </VBox>
+                        </uxap:blocks>
+                    </uxap:ObjectPageSubSection>
+                </uxap:subSections>
+            </uxap:ObjectPageSection>-->
+        </uxap:sections>
+        <uxap:footer>
+            <OverflowToolbar design="Auto">
+                <content>
+                    <ToolbarSpacer/>
+                    <Button text="Save" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                    <Button text="Cancel" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </content>
+            </OverflowToolbar>
+        </uxap:footer>
+    </uxap:ObjectPageLayout>
+</mvc:View>

@@ -1,0 +1,134 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+<VBox class="sapUiSmallMargin">
+		<f:Form id="FormChange480_Trial" editable="false">
+			<f:title>
+				<core:Title text="Matricular a Curso" />
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="4"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="3"
+					columnsL="2"
+					columnsM="2"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="Datos del Alumno">
+					<f:formElements>
+						<f:FormElement label="{i18n>nameTuition}">
+							<f:fields>
+								<Text id="iptnameAlumn" text="{modelAlumn>/name}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lastNameTuition}">
+							<f:fields>
+								<Text  text="{modelAlumn>/lastName}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>docCompetitor}">
+							<f:fields>
+								<Text text="{modelAlumn>/documentNumber}"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>sexCompetitor}">
+							<f:fields>
+								<Text text="{modelAlumn>/sex}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>lblProfesion}">
+							<f:fields>
+                            	<Text text="{displayProf>description}" id="profetionID" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>lblAge}">
+							<f:fields>
+								<Text text="{modelAlumn>/Edad}" />
+							</f:fields>
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+			</f:formContainers>
+		</f:Form>
+        <f:Form id="FormChange480_12120-2"
+			editable="true">
+			<f:title>
+				<core:Title text="More" />
+			</f:title>
+			<f:layout>
+				<f:ResponsiveGridLayout
+					labelSpanXL="4"
+					labelSpanL="4"
+					labelSpanM="12"
+					labelSpanS="12"
+					adjustLabelSpan="false"
+					emptySpanXL="0"
+					emptySpanL="0"
+					emptySpanM="0"
+					emptySpanS="0"
+					columnsXL="2"
+					columnsL="2"
+					columnsM="1"
+					singleContainerFullSize="false" />
+			</f:layout>
+			<f:formContainers>
+				<f:FormContainer title="{i18n>lblTitulo}">
+					<f:formElements>
+					<f:FormElement label="{i18n>title_Horarios}">
+							<f:fields>
+								<Text text="{modelAlumn>/horarioCurso}" id="iptHoraCurso" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>courseName}">
+							<f:fields>
+								<Text text="{modelAlumn>/nombreCurso}" id="iptNameCurso"/>
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>courseLevel}">
+							<f:fields>
+								<Text text="{modelAlumn>/nivelCurso}" />
+							</f:fields>
+						</f:FormElement>
+                        <f:FormElement label="{i18n>hourInicio}">
+							<f:fields>
+								<Text text="{modelAlumn>/horaInicio}" />
+							</f:fields>
+                            
+						</f:FormElement>
+					</f:formElements>
+				</f:FormContainer>
+				<f:FormContainer >
+					<f:formElements>
+					<f:FormElement label="{i18n>courseFrequence}">
+							<f:fields>
+								<Text text="{modelAlumn>/frecuencia}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>dateInicio}">
+							<f:fields>
+								<Text text="{modelAlumn>/dateInicio}" />
+							</f:fields>
+						</f:FormElement>
+						<f:FormElement label="{i18n>totalHoras}">
+							<f:fields>
+								<Text text="{modelAlumn>/totalHoras}" />
+							</f:fields>
+						</f:FormElement>
+                          
+					</f:formElements>
+				</f:FormContainer>                
+			</f:formContainers>
+		</f:Form>
+	</VBox>
+</core:FragmentDefinition>

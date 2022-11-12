@@ -1,0 +1,56 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:f="sap.f" xmlns:core="sap.ui.core" xmlns:form="sap.ui.layout.form"
+	xmlns:variants="sap.ui.comp.variants" xmlns:filterbar="sap.ui.comp.filterbar" width="700px">
+	<Dialog id="id_horario_popup" horizontalScrolling="true" showHeader="true" state="None" stretch="false" title="{i18n>title_Horarios}"
+		type="Standard" verticalScrolling="true" >
+		<Table id="tbListaCuenta" width="650px" noDataText="No data"  mode="None" showSeparators="All" growing="true" growingThreshold="20"
+			growingScrollToLoad="false" class="sapUiResponsiveMargin" items="{modelPopup>/listaHorarios}">
+			<columns>
+				<Column hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<header>
+						<Text text="Nombre" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</header>
+				</Column>
+				<Column  hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<header>
+						<Text text="Nivel" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</header>
+				</Column>
+				<Column  hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<header>
+						<Text text="Frencuencia" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</header>
+				</Column>
+				<Column  hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<header>
+						<Text text="Modalidad" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</header>
+				</Column>
+                <Column  hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<header>
+						<Text text="Fec. Inicio" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</header>
+				</Column>
+                 <Column  hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+					<header>
+						<Text text="Hora. Inicio" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</header>
+				</Column>
+			</columns>
+			<items>
+				<ColumnListItem type="Active" press="selectRow">
+					<cells>
+						<Text text="{modelPopup>nombreCurso}"  maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						<Text text="{modelPopup>descLevel}" maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						<Text text="{modelPopup>descMasterFrequence}"  maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+						<Text text="{modelPopup>descMasterModality}"  maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        <Text text="{modelPopup>startDate}"  maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        <Text text="{modelPopup>startHour}"  maxLines="3" wrapping="true" textAlign="Begin" textDirection="Inherit" visible="true"/>
+					</cells>
+				</ColumnListItem>
+			</items>
+		</Table>
+		<buttons>
+			<Button text="{i18n>button_Cancel}" type="Reject" press="onClosePopUpHorario"/>
+		</buttons>
+	</Dialog>
+</core:FragmentDefinition>

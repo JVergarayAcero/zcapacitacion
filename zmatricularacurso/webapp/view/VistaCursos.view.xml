@@ -1,0 +1,161 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" 
+xmlns:uxap="sap.uxap" 
+xmlns:variants="sap.ui.comp.variants" 
+xmlns="sap.m" 
+xmlns:f="sap.f" 
+xmlns:filterbar="sap.ui.comp.filterbar" 
+xmlns:svm="sap.ui.comp.smartvariants"
+xmlns:core="sap.ui.core" 
+controllerName="nebula.com.zmatricularacurso.controller.VistaCursos">
+    <f:DynamicPage headerExpanded="true" showFooter="false" class="sapUiSizeCompact">
+        <f:title>
+            <f:DynamicPageTitle>
+                <f:heading>
+                    <variants:VariantManagement/>
+                </f:heading>
+                <f:actions>
+                    <ToolbarSpacer/>
+                    <Button icon="sap-icon://action" type="Transparent"/>
+                </f:actions>
+            </f:DynamicPageTitle>
+        </f:title>
+        <f:header>
+            <f:DynamicPageHeader pinnable="true">
+            <f:content>
+                <filterbar:FilterBar id="FiltrarCursos" useToolbar="false" showGoOnFB="true" persistencyKey="myPersKey" search="onBuscar" filterChange=".filterCourses" afterVariantLoad=".filterCourses">
+                    <filterbar:filterGroupItems>
+                        <filterbar:FilterGroupItem visibleInFilterBar="true" groupName="G1" groupTitle="Group1" name="A" label="Nivel" labelTooltip="Tooltip GroupItem Example">
+                            <filterbar:control>
+                                <ComboBox selectionChange="filterCourses" selectedKey= "{modCurso>/id_Level}" id="id_cbx_level" placeholder="Niveles" editable="true" visible="true" width="50%" valueState="None" maxWidth="100%" items="{modelLevels>/listMasterLevel}">
+                                        <items>
+                                                <core:Item key="{modelLevels>ID}" text="{modelLevels>description}"/>
+                                        </items>
+                                </ComboBox>
+                                
+                            </filterbar:control>
+                        </filterbar:FilterGroupItem >
+                        <filterbar:FilterGroupItem visibleInFilterBar="true" groupName="G2" groupTitle="Group1" name="A" label="Frecuencia" labelTooltip="Tooltip GroupItem Example">
+                            <filterbar:control>                                
+                                <ComboBox selectedKey= "{modCurso>/id_frequence}" id="id_cbx_frequence" placeholder="Frecuencia" editable="true" visible="true" width="50%" valueState="None" maxWidth="100%" items="{modelFrequence>/listFrequence}">
+                                        <items>
+                                                <core:Item key="{modelFrequence>ID}" text="{modelFrequence>description}"/>
+                                        </items>
+                                </ComboBox>
+                            </filterbar:control>
+                        </filterbar:FilterGroupItem>
+                        <filterbar:FilterGroupItem visibleInFilterBar="true" groupName="G3" groupTitle="Group1" name="A" label="Cursos" labelTooltip="Tooltip GroupItem Example">
+                            <filterbar:control> 
+                                <Input id="id_cbx_nameCourses" type="Text" placeholder="Nombre de Curso" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0" />
+                            </filterbar:control>
+                        </filterbar:FilterGroupItem>
+
+                    </filterbar:filterGroupItems>
+                </filterbar:FilterBar>
+            </f:content>
+            </f:DynamicPageHeader>
+        </f:header>
+        <f:content>
+            <VBox fitContainer="true">
+                <items>
+                    <Table width="100%" growing="true" growingScrollToLoad="true" growingThreshold="25" mode="SingleSelectMaster" updateFinished="_onFioriListReportTableUpdateFinished" items="{path:'/verCursos', sorter: {path: 'ID'}}" itemPress="onDetalleCurso">
+                        <headerToolbar>
+                            <OverflowToolbar design="Transparent">
+                                <content>
+                                    <Title textAlign="Begin" text="Cursos"/>
+                                    <ToolbarSpacer/>
+                                    <!--<Button text="Eliminar" iconFirst="false" type="Reject" enabled="true" press="onEliminar">
+                                        <layoutData>
+                                            <OverflowToolbarLayoutData/>
+                                        </layoutData>
+                                    </Button>
+                                    <Button text="" icon="sap-icon://add" iconFirst="true" type="Transparent" enabled="true" press="onNuevo">
+                                        <layoutData>
+                                            <OverflowToolbarLayoutData/>
+                                        </layoutData>
+                                    </Button>
+                                    <Button icon="sap-icon://action-settings" type="Transparent">
+                                        <layoutData>
+                                            <OverflowToolbarLayoutData/>
+                                        </layoutData>
+                                    </Button>-->
+                                </content>
+                            </OverflowToolbar>
+                        </headerToolbar>
+                        <columns>
+                            <!--<Column width="64.65px" hAlign="Left" vAlign="Top" popinDisplay="Inline" mergeDuplicates="false" demandPopin="true" minScreenWidth="Phone">
+                                <header>
+                                    <Text text="Imagen"/>
+                                </header>
+                            </Column>-->
+                            <Column width="auto" minScreenWidth="Phone">
+                                <header>
+                                    <Text text="Nombre" width="auto"/>
+                                </header>
+                            </Column>
+                            <Column width="auto" minScreenWidth="Tablet" demandPopin="true">
+                                <header>
+                                    <Text text="Descripción" width="auto"/>
+                                </header>
+                            </Column>
+                            <Column width="auto" minScreenWidth="Desktop" demandPopin="true">
+                                <header>
+                                    <Text text="Total Horas" width="auto"/>
+                                </header>
+                            </Column>
+                            <Column width="auto" minScreenWidth="Desktop" demandPopin="true">
+                                <header>
+                                    <Text text="Costo" width="auto"/>
+                                </header>
+                            </Column>
+                            <Column width="129px" hAlign="Left" vAlign="Middle" popinDisplay="Inline" mergeDuplicates="false" demandPopin="true" minScreenWidth="Desktop">
+                                <header>
+                                    <Text text="Moneda"/>
+                                </header>
+                            </Column>
+
+                            <Column width="auto" hAlign="Right" minScreenWidth="Desktop" demandPopin="true">
+                                <header>
+                                    <Text text="Descripción Nivel" width="auto"/>
+                                </header>
+                            </Column>
+
+                        </columns>
+                        <items>
+                            <ColumnListItem type="Navigation">
+                                <cells>
+                                    <!--<Image src="{Image}" height="auto" width="50px" visible="true" densityAware="false"/>-->
+                                    <!--<Link text="{Name}" press="_onFioriListReportUrlColumnPress"/>-->
+                                    <!--<ObjectStatus text=""/>-->
+                                    <ObjectStatus text="{name}"/>
+                                    <ObjectStatus text="{description}"/>
+                                    <ObjectStatus text="{totalHours}"/>
+                                    <ObjectStatus text="{cost}"/>
+                                    <ObjectStatus text="{currency}"/>
+                                    <ObjectStatus text="{descriptionLevel}" state="{path:'StockLevelCC', formatter:'.formatStateFromCriticality'}" icon="{path:'StockLevelCC', formatter:'.formatIconFromCriticality'}"/>
+                                    
+                                    <!-- <RatingIndicator value="{path: 'AverageRating', type: 'sap.ui.model.type.Float', formatOptions: { maxFractionDigits: 2 }}" maxValue="5" visualMode="Half" enabled="false" visible="true" editable="true"/>
+                                    <HBox alignItems="Stretch" justifyContent="End" alignContent="Stretch">
+                                        <items>
+                                            <ObjectNumber number="{path:'Price', formatter:'.formatFractionDigitFromValue'}" unit="{Currency}" emphasized="false"/>
+                                        </items>
+                                    </HBox>-->
+                                </cells>
+                            </ColumnListItem>
+                        </items>
+                    </Table>
+                </items>
+            </VBox>
+        </f:content>
+        <f:footer>
+            <OverflowToolbar design="Auto">
+                <content>
+                    <ToolbarSpacer/>
+                    <Button text="Guardar" type="Emphasized" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                    <Button text="Cancelar" type="Default" iconFirst="true" width="auto" enabled="true" visible="true" iconDensityAware="false"/>
+                </content>
+            </OverflowToolbar>
+        </f:footer>
+
+    </f:DynamicPage>
+    	
+</mvc:View>
