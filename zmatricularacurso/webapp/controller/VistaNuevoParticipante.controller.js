@@ -11,13 +11,11 @@ sap.ui.define([
         
         return Controller.extend("nebula.com.zmatricularacurso.controller.VistaNuevoParticipante", {
             onInit: function () {
-                //alert("Hola vista nuevo particpante ")
+                alert("Hola vista nuevo particpante ")
                 //this.router = this.getOwnerComponent().getRouter(this);
                 //this.router.getRoute("VistaNuevoParticipante").attachPatternMatched(this._onPatternMatched(oView), this);
-              
                 this.byId('edit').setEnabled(true);
                 this._formFragments = {};
-                // Set the initial form to be the display one
                 this._showFormFragment("Display");
             },
             _getFormFragment: function (sFragmentName) {
