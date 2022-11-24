@@ -11,18 +11,22 @@ sap.ui.define([
         
         return Controller.extend("nebula.com.zmatricularacurso.controller.VistaNuevoParticipante", {
             onInit: function () {
-                alert("Hola vista nuevo particpante ")
-                this.router = this.getOwnerComponent().getRouter(this);
-                this.router.getRoute("VistaNuevoParticipante").attachPatternMatched(this._onPatternMatched, this);
+                //alert("Hola vista nuevo particpante ")
+                //this.router = this.getOwnerComponent().getRouter(this);
+                //this.router.getRoute("VistaNuevoParticipante").attachPatternMatched(this._onPatternMatched(oView), this);
+              
+                this.byId('edit').setEnabled(true);
+                this._formFragments = {};
+                // Set the initial form to be the display one
+                this._showFormFragment("Display");
             },
             _getFormFragment: function (sFragmentName) {
                 var pFormFragment = this._formFragments[sFragmentName],
-                    oView = this.getView();
-    
+                oView = this.getView();
                 if (!pFormFragment) {
                     pFormFragment = Fragment.load({
                         id: oView.getId(),
-                        name: "nebula.com.zmatricularacurso.fragmentviews.Horario" + sFragmentName
+                        name: "nebula.com.zmatricularacurso.fragmentviews." + sFragmentName
                     });
                     this._formFragments[sFragmentName] = pFormFragment;
                 }
@@ -30,8 +34,7 @@ sap.ui.define([
                 return pFormFragment;
             },
             _showFormFragment : function (sFragmentName) {
-                var oView = this.getView();
-                var oPage = oView.byId("pageD");
+                var oPage = this.byId("pageD");
                 oPage.removeAllContent();
                 this._getFormFragment(sFragmentName).then(function(oVBox){
                     oPage.insertContent(oVBox);
@@ -41,10 +44,40 @@ sap.ui.define([
                 var oArgument = evt.getParameter("arguments");
                 idCalendar = oArgument.idCalendar
                 this.cargarCabecera();
-                this._formFragments = {};
-                // Set the initial form to be the display one
-                this._showFormFragment("Display");   
+                  
             },
+            handleEditPress : function () {
+                //Clone the data
+                this._oSupplier = Object.assign({});
+                this._toggleButtonsAndView(true);
+    
+            },
+            handleCancelPress : function () {
+            //Restore the data
+			//var oModel = this.getView().getModel();
+			//var oData = oModel.getData();
+			//oData.SupplierCollection[0] = this._oSupplier;
+			//oModel.setData(oData);
+            this._toggleButtonsAndView(false);
+            },
+            handleSavePress : function () {
+			this._toggleButtonsAndView(false);
+    		},
+            _toggleButtonsAndView : function (bEdit) {
+                var oView = this.getView();
+                // Show the appropriate action buttons
+                oView.byId("edit").setVisible(!bEdit);
+                oView.byId("save").setVisible(bEdit);
+                oView.byId("cancel").setVisible(bEdit);
+    
+                // Set the right form type
+                this._showFormFragment(bEdit ? "Change" : "Display");
+            },
+            pasarAEditar: function(){
+                var oRouter = sap.ui.core.UIComponent.getRouterFor(this);
+                oRouter.navTo("VistaNuevoParticipanteNuevo", {}, true);
+            },
+
             cargarCabecera: function (){
                 var oView = this.getView();
                 var self = this;

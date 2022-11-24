@@ -3,8 +3,8 @@
 	xmlns:l="sap.ui.layout"
 	xmlns:f="sap.ui.layout.form"
 	xmlns:core="sap.ui.core">
-    <VBox class="sapUiSmallMargin">
-		<f:Form id="FormChange480_Trial" editable="true">
+<VBox class="sapUiSmallMargin">
+		<f:Form id="FrmDisplay" editable="false">
 			<f:title>
 				<core:Title text="Matricular a Curso" />
 			</f:title>
@@ -29,46 +29,39 @@
 					<f:formElements>
 						<f:FormElement label="{i18n>nameTuition}">
 							<f:fields>
-								<Input id="iptnameAlumn" placeholder="{i18n>holdNameAlumn}" showSuggestion="true" showValueHelp="true" 
-                                valueHelpRequest=".onValueHelpRequest"
-			                    
-                                value="{modelAlumn>/name}" type="Text"/>
+								<Text  text="{modelAlumn>/name}" id="iptnameAlumnText"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>lastNameTuition}">
 							<f:fields>
-								<Input  value="{modelAlumn>/lastName}" type="Text"/>
+								<Text  text="{modelAlumn>/lastName}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>docCompetitor}">
 							<f:fields>
-								<Input value="{modelAlumn>/documentNumber}" type="Text"/>
+								<Text text="{modelAlumn>/documentNumber}"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>sexCompetitor}">
 							<f:fields>
-								<Input value="{modelAlumn>/sex}" type="Text"/>
+								<Text text="{modelAlumn>/sex}" />
 							</f:fields>
 						</f:FormElement>
                         <f:FormElement label="{i18n>lblProfesion}">
 							<f:fields>
-								<Select id="cbxProfesion" selectedKey="{modelAlumn>/id}" items="{displayProf>/masterProfesion}">
-									<items>
-                                        <core:Item key="{displayProf>ID}" text="{displayProf>description}"/>
-									</items>
-								</Select>
+                            	<Text text="{displayProf>description}" id="profetionIDText" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>lblAge}">
 							<f:fields>
-								<Input value="{modelAlumn>/Edad}" type="Number"/>
+								<Text text="{modelAlumn>/Edad}" />
 							</f:fields>
 						</f:FormElement>
 					</f:formElements>
 				</f:FormContainer>
 			</f:formContainers>
 		</f:Form>
-        <f:Form id="FormChange480_12120-2"
+        <f:Form id="FrmDisplay2"
 			editable="true">
 			<f:title>
 				<core:Title text="More" />
@@ -94,22 +87,22 @@
 					<f:formElements>
 					<f:FormElement label="{i18n>title_Horarios}">
 							<f:fields>
-								<Input value="{modelAlumn>/horarioCurso}" id="iptHoraCurso" showValueHelp="true" valueHelpRequest="onPopupHorario"/>
+								<Text text="{modelAlumn>/horarioCurso}" id="iptHoraCursoText" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>courseName}">
 							<f:fields>
-								<Input value="{modelAlumn>/nombreCurso}" id="iptNameCurso"/>
+								<Text text="{modelAlumn>/nombreCurso}" id="iptNameCursoText"/>
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>courseLevel}">
 							<f:fields>
-								<Input value="{modelAlumn>/nivelCurso}" />
+								<Text text="{modelAlumn>/nivelCurso}" />
 							</f:fields>
 						</f:FormElement>
                         <f:FormElement label="{i18n>hourInicio}">
 							<f:fields>
-								<Input value="{modelAlumn>/horaInicio}" />
+								<Text text="{modelAlumn>/horaInicio}" />
 							</f:fields>
                             
 						</f:FormElement>
@@ -119,17 +112,17 @@
 					<f:formElements>
 					<f:FormElement label="{i18n>courseFrequence}">
 							<f:fields>
-								<Input value="{modelAlumn>/frecuencia}" />
+								<Text text="{modelAlumn>/frecuencia}" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>dateInicio}">
 							<f:fields>
-								<Input value="{modelAlumn>/dateInicio}" />
+								<Text text="{modelAlumn>/dateInicio}" />
 							</f:fields>
 						</f:FormElement>
 						<f:FormElement label="{i18n>totalHoras}">
 							<f:fields>
-								<Input value="{modelAlumn>/totalHoras}" />
+								<Text text="{modelAlumn>/totalHoras}" />
 							</f:fields>
 						</f:FormElement>
                           
@@ -138,4 +131,4 @@
 			</f:formContainers>
 		</f:Form>
 	</VBox>
-</core:FragmentDefinition>    
+</core:FragmentDefinition>
